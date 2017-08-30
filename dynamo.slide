@@ -1,0 +1,93 @@
+DynamoDB
+
+* Origin
+
+Amazon created Dynamo in response to a number of critical outages that occurred during the 2004 holiday shopping season.
+
+.link http://www.allthingsdistributed.com/2012/01/amazon-dynamodb.html
+.link http://www.allthingsdistributed.com/files/amazon-dynamo-sosp2007.pdf Dynamo Paper
+
+: so, it's about scalability
+
+
+* Characterics
+
+- key-value
+- schemaless
+- horizontal partitioning
+- serverless
+
+* Key-Value
+
+* schemaless
+
+- typed
+
+* horizontal partitioning
+
+- read write capacities calculator
+- auto scale
+- Eventual Consistency and Immediate Consistency (can be specified by read operations)
+    
+* serverless
+
+- restful http api
+- auth
+
+
+* Features
+
+- range key
+- local and global secondary keys
+- document-oriented support (sdk level)
+- TTL
+- conditional expression
+- scan
+- stream
+- Amazon DynamoDB Accelerator (DAX)
+- VPC ?
+- read/write consistency
+
+
+
+* auto scaling
+
+You can scale down, but it is limited.
+
+You start each 24hr period with 4 chances to scale down, and after those are depleted you can scale down once every 4 hrs regardless
+
+* query filtering on non-key attributes
+
+CONTAINS, NOT_CONTAINS, and BEGINS_WITH for string matching, BETWEEN for range checking,  and IN to check for membership in a set.
+
+* Transaction Library
+
+-  AWS SDK for Java
+- https://github.com/awslabs/dynamodb-transactions
+
+* data pipeline to redshift
+
+
+* Limitations
+
+- item size
+- auto-scale
+
+: Auto Scaling available since Jun 2017
+: VPC Endpoints available since Aug 2017
+: TTL available since Feb 2017
+: map and list data types, since 0ct 2014
+: 400kb item size, since oct 2014
+: global secondary index since Dec 2013
+
+* cost
+
+- cost based on reads and writes per second.
+-  Irrespective of the amount of read data per operation (whether its 1 bytes or 100 bytes), its always charged for 1KB
+
+
+* DynamodDB Local
+
+.link http://docs.aws.amazon.com/amazondynamodb/latest/developerguide/DynamoDBLocal.html#DynamoDBLocal.DownloadingAndRunning Download
+
+* Demo
