@@ -1,12 +1,5 @@
 DynamoDB
 
-
-* Agenda
-
-- History
-- Characteristics
-- Key Features
-
 * Origin
 
 Amazon created Dynamo in response to a number of critical outages that occurred during the 2004 holiday shopping season.
@@ -20,14 +13,8 @@ Amazon created Dynamo in response to a number of critical outages that occurred 
 
 .image timeline.png 500 800
 
-* Characterics
-
-- Key-value
-- Schema-less
-- Horizontal partitioning
-- Serverless
-
 * Key-Value
+
 
 * Schema-less
 
@@ -36,35 +23,20 @@ Amazon created Dynamo in response to a number of critical outages that occurred 
 - item size limit 400KB
 - no limit to the number of attributes
 
+
 * Partitioning
 
 Vertical partitioning
 
 .image verticalPartitioning.png
 
+
 * Partitioning
 
 Horizontal partitioning
 
 .image horizontalPartitioning.png
-    
-* Serverless
 
-- HTTP(S)-based APIs
-- API Gateway integration
-- As Lambda event source (DynamoDB Streams)
-
-* Key Features
-
-- Data Types
-- Primary Key
-- Indexes
-- Read Consistency
-- Query
-- Condition Expression
-- Transaction
-- Import/Export
-- New Features
 
 * Data Types
 
@@ -72,21 +44,26 @@ Horizontal partitioning
 - Set – String Set, Number Set, and Binary Set
 - Document – List and Map
 
+
 * Primary Key
 
 .image PartitionKey.png
+
 
 * Indexes
 
 .image lsi.jpg
 
+
 * Indexes
 
 .image gsi.jpg
 
+
 * Read Consistency
 
 .image cap.png 500 500
+
 
 * Read Consistency
 
@@ -97,45 +74,65 @@ A strongly consistent read might not be available if there is a network delay or
 
 .link http://docs.aws.amazon.com/amazondynamodb/latest/developerguide/HowItWorks.ProvisionedThroughput.html Throughput Capacity for Reads and Writes
 
-* Query
+* Query and Scan
+
+Query finds items based on primary key values.
 
 Query filtering on non-key attributes
-
 - CONTAINS, NOT_CONTAINS and BEGINS_WITH for string matching
 - BETWEEN for range checking
 - IN to check for membership in a set
 
-(quick overview on AWS)
+Scan
 
+- Maximum data set size limit of 1 MB
+- Scan uses eventually consistent reads
+
+use *LastEvaluatedKey* to detect pagination
+
+: quick overview on AWS
+
+* Table
+
+.code scripts/table.js
+
+* Create
+
+.code scripts/create.js
+
+* Read
+
+.code scripts/read.js
+
+* Update
+
+.code scripts/update.js
+
+* Delete
+
+.code scripts/delete.js
 
 * Condition Expression
 
+.code scripts/condition.js
 
-  aws dynamodb put-item \
-      --table-name ProductCatalog \
-      --item file://item.json \
-      --condition-expression "attribute_not_exists(Id)"
+* Condition Expression
 
+  attribute_not_exists(Id)
 
-  aws dynamodb delete-item \
-      --table-name ProductCatalog \
-      --key '{"Id":{"N":"456"}}' \
-      --condition-expression "(ProductCategory IN (:cat1, :cat2)) and (Price between :lo and :hi)" \
-      --expression-attribute-values file://values.json
-
-
-  aws dynamodb update-item \
-      --table-name ProductCatalog \
-      --key '{"Id": {"N": "456"}}' \
-      --update-expression "SET Price = Price - :discount" \
-      --condition-expression "Price > :limit" \
-      --expression-attribute-values file://values.json
+  (ProductCategory IN (:cat1, :cat2)) and (Price between :lo and :hi)
 
 
 * Transaction
 
 AWS SDK for Java
 .link https://github.com/awslabs/dynamodb-transactions
+    
+* Works with Serverless
+
+- HTTP(S)-based APIs
+- API Gateway integration
+- As Lambda event source (DynamoDB Streams)
 
 * Import/Export
 
