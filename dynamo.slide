@@ -5,11 +5,13 @@ DynamoDB
 Amazon created Dynamo in response to a number of critical outages that occurred during the 2004 holiday shopping season.
 
 .link http://www.allthingsdistributed.com/2012/01/amazon-dynamodb.html
-.link http://www.allthingsdistributed.com/files/amazon-dynamo-sosp2007.pdf Dynamo Paper (2007)
 
 .image images/history.png
 
 * Timeline
+
+.link https://static.googleusercontent.com/media/research.google.com/en//archive/bigtable-osdi06.pdf Bigtable Paper (2006)
+.link http://www.allthingsdistributed.com/files/amazon-dynamo-sosp2007.pdf Dynamo Paper (2007)
 
 .image images/timeline.png 500 800
 
@@ -43,12 +45,22 @@ Horizontal partitioning
 .image images/hash.png 300 500
 
 
+* Partition Split
+
+A partition split can occur in response to:
+
+- Increased provisioned throughput settings
+- Increased storage requirements
+
+.image images/PartitionSplit.png
+
 * Data Types
 
 - Scalar – Number, String, Binary, Boolean, and Null
 - Set – String Set, Number Set, and Binary Set
 - Document – List and Map
 
+: JSON support via SDK
 
 * Primary Key
 
@@ -84,6 +96,10 @@ A strongly consistent read might not be available if there is a network delay or
 
 .link http://docs.aws.amazon.com/amazondynamodb/latest/developerguide/HowItWorks.ProvisionedThroughput.html Throughput Capacity for Reads and Writes
 
+: It's really just A vs C!
+: On systems that allow reads before updating all the nodes, high Availability
+: On systems that lock all the nodes before allowing reads, Consistency
+
 
 * Query and Scan
 
@@ -101,6 +117,8 @@ Scan
 
 use *LastEvaluatedKey* to detect pagination
 
+: put, delete
+: batch
 : quick overview on AWS
 
 * Table
@@ -139,14 +157,21 @@ use *LastEvaluatedKey* to detect pagination
 
 AWS SDK for Java
 .link https://github.com/awslabs/dynamodb-transactions
-    
+
+.link https://github.com/awslabs/dynamodb-transactions/blob/master/DESIGN.md From CD to ACID: Adding Atomicity and Isolation to DynamoDB
+
+
 * Works with Serverless
 
 - HTTP(S)-based APIs
 - API Gateway integration
 - As Lambda event source (DynamoDB Streams)
 
-* Import/Export
+* Exporting data
+
+- Data Pipeline
+- Redshift
+- EMR
 
 .link http://docs.aws.amazon.com/datapipeline/latest/DeveloperGuide/dp-importexport-ddb.html Import and Export DynamoDB Data Using AWS Data Pipeline
 
@@ -176,6 +201,7 @@ Time To Live (TTL) for DynamoDB allows you to define when items in a table expir
 
 .play scripts/start_local.sh
 
-* Social Reaction Project
+* Social Reaction System
 
 - API Gateway + Lambda + DynamoDB
+
