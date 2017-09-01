@@ -7,18 +7,18 @@ Amazon created Dynamo in response to a number of critical outages that occurred 
 .link http://www.allthingsdistributed.com/2012/01/amazon-dynamodb.html
 .link http://www.allthingsdistributed.com/files/amazon-dynamo-sosp2007.pdf Dynamo Paper (2007)
 
-.image history.png
+.image images/history.png
 
 * Timeline
 
-.image timeline.png 500 800
+.image images/timeline.png 500 800
 
 * Key-Value
 
 
 * Schema-less
 
-.image schemaless.jpg
+.image images/schemaless.jpg
 
 - item size limit 400KB
 - no limit to the number of attributes
@@ -28,14 +28,19 @@ Amazon created Dynamo in response to a number of critical outages that occurred 
 
 Vertical partitioning
 
-.image verticalPartitioning.png
+.image images/verticalPartitioning.png
 
 
 * Partitioning
 
 Horizontal partitioning
 
-.image horizontalPartitioning.png
+.image images/horizontalPartitioning.png
+
+
+* Partitioning
+
+.image images/hash.png
 
 
 * Data Types
@@ -47,22 +52,22 @@ Horizontal partitioning
 
 * Primary Key
 
-.image PartitionKey.png
+.image images/PartitionKey.png
 
 
 * Indexes
 
-.image lsi.jpg
+.image images/lsi.jpg
 
 
 * Indexes
 
-.image gsi.jpg
+.image images/gsi.jpg
 
 
 * Read Consistency
 
-.image cap.png 500 500
+.image images/cap.png 500 500
 
 
 * Read Consistency
@@ -72,7 +77,13 @@ Horizontal partitioning
 
 A strongly consistent read might not be available if there is a network delay or outage.
 
+
+* Throughput Capacity
+
+.image images/formula.png
+
 .link http://docs.aws.amazon.com/amazondynamodb/latest/developerguide/HowItWorks.ProvisionedThroughput.html Throughput Capacity for Reads and Writes
+
 
 * Query and Scan
 
@@ -95,6 +106,7 @@ use *LastEvaluatedKey* to detect pagination
 * Table
 
 .code scripts/table.js
+
 
 * Create
 
@@ -156,7 +168,7 @@ AWS SDK for Java
 
 Time To Live (TTL) for DynamoDB allows you to define when items in a table expire so that they can be automatically deleted from the database.
 
-.image ttl.png 480 700
+.image images/ttl.png 480 700
 
 * DynamodDB Local
 
