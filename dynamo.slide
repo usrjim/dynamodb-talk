@@ -40,7 +40,7 @@ Horizontal partitioning
 
 * Partitioning
 
-.image images/hash.png
+.image images/hash.png 300 500
 
 
 * Data Types
@@ -173,6 +173,8 @@ Time To Live (TTL) for DynamoDB allows you to define when items in a table expir
 * DynamodDB Local
 
 .link http://docs.aws.amazon.com/amazondynamodb/latest/developerguide/DynamoDBLocal.html#DynamoDBLocal.DownloadingAndRunning Download DynamoDB Local
+
+.play scripts/start_local.sh
 
 * Social Reaction Project
 
